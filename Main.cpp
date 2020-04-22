@@ -2,7 +2,6 @@
 #include "GL/freeglut.h"
 #include <iostream>
 #include <math.h>
-#include "GLM/Include/glm.hpp"
 #include <vector>
 using namespace std;
 struct vertex
@@ -46,7 +45,23 @@ void renderScene(void) {
 	glColor3f(1.0, 1.0, 1.0);
 	glPointSize(2.0);
 	glBegin(GL_POINTS);
-	
+	vertex p1, p2, p3, p4;
+	//Point 1
+	p1.x = 100;
+	p1.y = 200;
+	v.push_back(p1);
+	//Point 2
+	p2.x = 300;
+	p2.y = 800;
+	v.push_back(p2);
+	//Point 3
+	p3.x = 500;
+	p3.y = 200;
+	v.push_back(p3);
+	//Point 4
+	p4.x = 700;
+	p4.y = 800;
+	v.push_back(p4);
 	/*glVertex2i(p1.x, p1.y);
 	glVertex2i(p2.x, p2.y);/*
 	glVertex2i(p3.x, p3.y);
@@ -99,23 +114,7 @@ int main(int argc, char** argv) {
 
 	//Initialise GLUT with command-line parameters. 
 	glutInit(&argc, argv);
-	vertex p1, p2, p3, p4;
-	//Point 1
-	p1.x = 100;
-	p1.y = 200;
-	v.push_back(p1);
-	//Point 2
-	p2.x = 300;
-	p2.y = 800;
-	v.push_back(p2);/*
-	//Point 3
-	p3.x = 500;
-	p3.y = 200;
-	v.push_back(p3);
-	//Point 4
-	p4.x = 700;
-	p4.y = 800;
-	v.push_back(p4);*/
+	
 	//Set Display Mode
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 
