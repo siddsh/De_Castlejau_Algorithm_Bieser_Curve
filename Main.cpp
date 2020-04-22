@@ -300,11 +300,12 @@ int main(int argc, char** argv)
     // Initialize GL states & register callbacks
     init();
     glutDisplayFunc(display);
+    glutIdleFunc(display);
+    
     glutKeyboardFunc(keyboard);
     glutReshapeFunc(reshape);
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
-
     // Do something
     glutMainLoop();
 
