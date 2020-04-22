@@ -18,7 +18,7 @@ using namespace std;
 
 // Global variables
 // Window/viewport
-const int startwinsize = 400; // Starting window width & height, in pixels
+const int startwinsize = 600; // Starting window width & height, in pixels
 int winw, winh;               // Window width & height, in pixels, saved by reshape
 
 // Mouse
@@ -75,7 +75,35 @@ vertex findFinalVert(double t)
     }
     return vtr[0];
 }
-
+double distance(vertex v1, vertex v2)
+{
+    return ((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y));
+}
+int findNearestVertex(double x, double y)
+{
+    double minDistance;
+    if (v.size() < 2)
+    {
+        vertex vecto{};
+        vecto.x = NULL;
+        vecto.y = NULL;
+        return NULL;
+    }
+    vertex vtx;
+    vtx.x = x;
+    vtx.y = y;
+    int index = 0;
+    minDistance = distance(vtx, v[0]);
+    for (int i = 1; i < v.size() ; i++)
+    {
+        if (minDistance > distance(vtx, v[i]))
+        {
+            minDistance = distance(vtx, v[i]);
+            index = i;
+        }
+    }
+    return index;
+}
 // printbitmap
 // Prints the given string at the given raster position
 //  using GLUT bitmap fonts.
@@ -102,12 +130,13 @@ void display()
     // Make a small box at the mouse position, if the LEFT button is down
     // Draw the box
     glColor3d(0.0, 0.6, 0.6);
-    glPointSize(2.0);
+    glPointSize(4.0);
     glBegin(GL_POINTS);
     for (int i = 0; i < v.size(); i++)
     {
         glVertex2f(v[i].x, v[i].y);
     }
+    glPointSize(2.0);
     for (double i = 0; i < 1; i += 0.001)
     {
         vertex final;
@@ -118,20 +147,68 @@ void display()
     // Documentation
     glColor3d(1.0, 1.0, 1.0);  // White text
     printbitmap("Bezier Curve", 0.05, 0.95);
-    printbitmap("Press Left mouse button to add point", 0.05, 0.9);
-    printbitmap("Press Middle Button to drag the nearest point", 0.05, 0.85);
-    printbitmap("Press Right Button to Remove the nearest point", 0.05, 0.80);
+    printbitmap("Press Left Mouse Button to add point", 0.05, 0.9);
+    printbitmap("Press Middle(Scroll) Mouse Button to drag the nearest point to a new location", 0.05, 0.85);
+    printbitmap("Press Right Mouse Button to Remove the nearest point", 0.05, 0.80);
     glutSwapBuffers();
 }
 
 
 // mouse
 // The GLUT mouse function
+int nearVtx;
 void mouse(int button, int state, int x, int y)
 {
     // Save the left button state
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
     {
+        mousex = x;
+        mousey = y;
+        double oglx = double(mousex) / winw;
+        double ogly = 1 - double(mousey) / winh;
+        cout << "X: " << oglx;
+        cout << "\tY: " << ogly << endl;
+        vertex vert;
+        vert.x = oglx;
+        vert.y = ogly;
+        v.push_back(vert);
+        //glutPostRedisplay();  // Left button has changed; redisplay!
+    }
+    else if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+    {
+        if (v.size() == 0)
+        {
+            cout << "No Points To Remove" << endl;
+            return;
+        }
+        mousex = x;
+        mousey = y;
+        double oglx = double(mousex) / winw;
+        double ogly = 1 - double(mousey) / winh;
+        cout << "X: " << oglx;
+        cout << "Y: " << ogly << endl;
+        int nearestVertexIndex;
+        nearestVertexIndex = findNearestVertex(oglx, ogly);
+        cout << "NEAREST :" << nearestVertexIndex << endl;
+        v.erase(v.begin() + nearestVertexIndex);
+    }
+    else if (button == GLUT_MIDDLE_BUTTON && state == GLUT_DOWN)
+    {
+        nearVtx = -1;
+        mousex = x;
+        mousey = y;
+        double oglx = double(mousex) / winw;
+        double ogly = 1 - double(mousey) / winh;
+        cout << "X: " << oglx;
+        cout << "\tY: " << ogly << endl;
+        nearVtx = findNearestVertex(oglx, ogly);
+        cout << "NEAR VERTEX: " << nearVtx << endl;
+        cout << "X: " << v[nearVtx].x;
+        cout << "\tY: " << v[nearVtx].y << endl;
+    }
+    else if (button == GLUT_MIDDLE_BUTTON && state == GLUT_UP)
+    {
+        cout << "UP" << endl;
         mouseleftdown = (state == GLUT_DOWN);
         mousex = x;
         mousey = y;
@@ -139,13 +216,10 @@ void mouse(int button, int state, int x, int y)
         double ogly = 1 - double(mousey) / winh;
         cout << "X: " << oglx;
         cout << "Y: " << ogly << endl;
-        vertex vert;
-        vert.x = oglx;
-        vert.y = ogly;
-        v.push_back(vert);
-        //glutPostRedisplay();  // Left button has changed; redisplay!
+        v[nearVtx].x = oglx;
+        v[nearVtx].y = ogly;
+        nearVtx = -1;
     }
-
     // Save the mouse position
     
 }
@@ -167,14 +241,7 @@ void motion(int x, int y)
 
 // idle
 // The GLUT idle function
-void idle()
-{
-    // Print OpenGL errors, if there are any (for debugging)
-    if (GLenum err = glGetError())
-    {
-        cerr << "OpenGL ERROR: " << gluErrorString(err) << endl;
-    }
-}
+
 
 
 // keyboard
@@ -229,11 +296,10 @@ int main(int argc, char** argv)
     glutInitWindowSize(startwinsize, startwinsize);
     glutInitWindowPosition(50, 50);
     glutCreateWindow("Bezier Curves");
-   
+    //glutFullScreen();
     // Initialize GL states & register callbacks
     init();
     glutDisplayFunc(display);
-    glutIdleFunc(display);
     glutKeyboardFunc(keyboard);
     glutReshapeFunc(reshape);
     glutMouseFunc(mouse);
