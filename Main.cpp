@@ -25,7 +25,7 @@ const int ESCKEY = 27;        // ASCII value of escape character
 const double pointsize = 40;  // Size of point
 struct vertex                   // a structure to store the x and y coordinates of each point
 {
-    double x, y;
+    
 };
 vector<vertex> v;               //we defined a vector of type vertex here. this will be used to store all the vertices that we use for drawing our bezier curve
  
