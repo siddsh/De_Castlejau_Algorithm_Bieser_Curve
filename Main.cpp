@@ -1,6 +1,3 @@
-
-
-//#include"glut.h"
 #include "GL/freeglut.h"
 #include <iostream>
 #include <math.h>
@@ -13,7 +10,9 @@ const int startwinsize = 600; // Starting window width & height, in pixels
 int winw, winh;               // Window width & height, in pixels, saved by reshape
  
 // Mouse
-bool mouseleftdown = false;   // True if mouse LEFT button is down.
+bool mouseleftdown = false;   // True if mouse LEFT button is down.//glutMotionFunc(motion);
+    // Do something
+    
                               // Saved by mouse.
 int mousex, mousey;           // Mouse x,y coords, in GLUT format (pixels from upper-left corner).
                               // Only guaranteed to be valid if a mouse button is down.
@@ -92,7 +91,7 @@ int findNearestVertex(double x, double y)
     {
         vertex vecto{};
         vecto.x = NULL;
-        vecto.y = NULLglutIdleFunc(display);
+        vecto.y = NULL;
    
         return NULL;
     }
@@ -105,7 +104,9 @@ int findNearestVertex(double x, double y)
     {
         if (minDistance > distance(vtx, v[i]))
         {
-            minDistancglutIdleFunc(display);
+             minDistance = distance(vtx, v[i]);
+            index = i;
+        }
    
     }
     return index;
@@ -121,7 +122,7 @@ void printbitmap(const string msg, double x, double y)
         ++ii)
     {
         glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *ii);
-    }glutIdleFunc(display);
+    }
    
 }/* This is our rendering function to display our scene*/
 void display()
