@@ -28,7 +28,6 @@ const double pointsize = 40;  // Size of point
 and will use its functions accordingly. This is global as
 it has been used across many functions*/
 vertex obj;
-vector<vertex> v ;
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -36,9 +35,9 @@ void display()
     glPointSize(4.0);
     glBegin(GL_POINTS);
     /*Drawing all the points that are in our vector array of type vertex*/
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < obj.v.size(); i++)
     {
-        glVertex2f(v[i].x, v[i].y);
+        glVertex2f(obj.v[i].x, obj.v[i].y);
     }
     glPointSize(2.0);
     /* Drawing the curve */
@@ -47,9 +46,7 @@ void display()
         vertex final;
         final = obj.findFinalVert(i);
         glVertex2d(final.x, final.y);
-        cout<<"*******************";
-        cout<<"\n"<<final.x<<"\n"<<final.y<<"\n"<<i<<"\n";
-        cout<<"*******************";
+        
     }
     glEnd();
     glColor3d(1.0, 1.0, 1.0);  // White text
@@ -84,7 +81,7 @@ void mouse(int button, int state, int x, int y)
         vert.y = ogly;
         /*Adding this to our original array of all the points as any point where the left click is pressed
         should be drawn and the bezier curve should be changed accordingly*/
-        v.push_back(vert);
+        obj.v.push_back(vert);
         //glutPostRedisplay();  // Left button has changed; redisplay!
     }
     /*When our right button of the mouse is pressed , we want to 
@@ -92,7 +89,7 @@ void mouse(int button, int state, int x, int y)
     the curve should be changed accordingly*/
     else if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
     {
-        if (v.size() == 0)
+        if (obj.v.size() == 0)
         {
             cout << "No Points To Remove" << endl;
             return;
@@ -113,7 +110,7 @@ void mouse(int button, int state, int x, int y)
         cout << "NEAREST :" << nearestVertexIndex << endl;
         /*Removing the point from our original vertex containing the points used to
         draw the bezier curve. After removing , we must update our bezier curve*/
-        v.erase(v.begin() + nearestVertexIndex);
+        obj.v.erase(obj.v.begin() + nearestVertexIndex);
     }
     /*Now we want to drag a point from the point where we click our middle
     button of our mouse and then draw it at the point where we release 
@@ -134,8 +131,8 @@ void mouse(int button, int state, int x, int y)
         precision in selecting a point.*/
         nearVtx = obj.findNearestVertex(oglx, ogly);
         cout << "NEAR VERTEX: " << nearVtx << endl;
-        cout << "X: " << v[nearVtx].x;
-        cout << "\tY: " << v[nearVtx].y << endl;
+        cout << "X: " << obj.v[nearVtx].x;
+        cout << "\tY: " << obj.v[nearVtx].y << endl;
     }
     else if (button == GLUT_MIDDLE_BUTTON && state == GLUT_UP)
     {
@@ -151,8 +148,8 @@ void mouse(int button, int state, int x, int y)
         cout << "Y: " << ogly << endl;
         /*Now we change the point where our middle button was released in
          the original vertex vector and update the bezier curve accordingly*/
-        v[nearVtx].x = oglx;
-        v[nearVtx].y = ogly;
+        obj.v[nearVtx].x = oglx;
+        obj.v[nearVtx].y = ogly;
         nearVtx = -1;
     }
     // Save the mouse position
