@@ -18,8 +18,8 @@ vector<vertex> vertex::findOneLess(vector<vertex> vert, double t){
     }
 }
 vertex vertex::findFinalVert(double t){
-    /*We put this if condition to ensure that we have atleast 2 points, which is the
-    minimum requirement for drawing a bezier curve.*/
+    /** We put this if condition to ensure that we have atleast 2 points, which is the
+    * minimum requirement for drawing a bezier curve.*/
     if (v.size() < 2)
     {
         vertex vecto{};
@@ -41,7 +41,7 @@ double vertex::distance(vertex v1, vertex v2){
 }
 int vertex::findNearestVertex(double x, double y){
     double minDistance;
-    /*To calculate distance, we need a minimum of two points. Hence the condition checking here*/
+    /** To calculate distance, we need a minimum of two points. Hence the condition checking here*/
     if (v.size() < 2)
     {
         vertex vecto{};
