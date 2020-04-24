@@ -14,14 +14,14 @@ Press Left Mouse Button to add point
 Press Middle(Scroll) Mouse Button to drag the nearest point to a new location
 Press Right Mouse Button to Remove the nearest point.
 
-### Our curve
+### Our curve (4 point Bezier Curve made by clicking on the respective points)
 ![alt text](https://github.com/siddsh/De_Castlejau_Algorithm_Bieser_Curve/blob/master/resources/image.png)
 
 ### Add point by clicking the left mouse button 
 ![alt text](https://github.com/siddsh/De_Castlejau_Algorithm_Bieser_Curve/blob/master/resources/image(1).png)
 
-### Remove the point nearest to cursor by clicking the right mouse button 
+### Remove the point nearest to cursor by clicking the right mouse button (Removed the first Point) 
 ![alt text](https://github.com/siddsh/De_Castlejau_Algorithm_Bieser_Curve/blob/master/resources/image(2).png)
 
-### Move the point nearest to cursor by clicking the scroll button 
+### Move the point nearest to cursor by clicking the scroll button (Shifted the position of the last point, Bottom Left)
 ![alt text](https://github.com/siddsh/De_Castlejau_Algorithm_Bieser_Curve/blob/master/resources/image(3).png)
