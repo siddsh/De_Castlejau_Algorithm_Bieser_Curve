@@ -11,7 +11,7 @@ class vertex {
         vector<vertex> findOneLess(vector<vertex> vert, double t);
         /**This function is used to find the points at an interval of 0.01 factors to draw our bezier curve from
         * the given input vector of type vertex class*/
-        vertex findFinalVert(double t);
+        vertex findFinalPt(double t, vector<vertex> ver);
         /** A function to calculate the distance between any 2 given points. We use this function
         * to find the nearest point as we can't accurately point on any given pixel when deleting or
         * scrolling through a function*/

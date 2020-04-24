@@ -17,24 +17,17 @@ vector<vertex> vertex::findOneLess(vector<vertex> vert, double t){
         return f;
     }
 }
-vertex vertex::findFinalVert(double t){
-    /** We put this if condition to ensure that we have atleast 2 points, which is the
-    * minimum requirement for drawing a bezier curve.*/
-    if (v.size() < 2)
+vertex vertex::findFinalPt(double t, vector<vertex> ver)
+{
+    if (ver.size() < 1)
+        return vertex();
+
+    if (ver.size() == 1)
     {
-        vertex vecto{};
-        vecto.x = NULL;
-        vecto.y = NULL;
-        return vecto;
+        return ver[0];
     }
- 
-    vector<vertex> vtr;
-    vtr = findOneLess(v, t);
-    while (vtr.size() != 1)
-    {
-        vtr = findOneLess(vtr, t);
-    }
-    return vtr[0];
+    ver = findOneLess(ver, t);
+    return findFinalPt(t, ver);    
 }
 double vertex::distance(vertex v1, vertex v2){
     return ((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y));
@@ -59,7 +52,7 @@ int vertex::findNearestVertex(double x, double y){
     {
         if (minDistance > distance(vtx, v[i]))
         {
-             minDistance = distance(vtx, v[i]);
+            minDistance = distance(vtx, v[i]);
             index = i;
         }
    

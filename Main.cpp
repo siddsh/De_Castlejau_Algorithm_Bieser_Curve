@@ -24,7 +24,7 @@ using namespace std;
     for (double i = 0; i < 1; i += 0.001)
     {
         vertex final;
-        final = obj.findFinalVert(i);
+        final = obj.findFinalPt(i , obj.v);
         glVertex2d(final.x, final.y);
         
     }
