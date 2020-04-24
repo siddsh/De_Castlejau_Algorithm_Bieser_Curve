@@ -1,7 +1,8 @@
+int nearVtx;
 /** mouse
 * The GLUT mouse function
 */
-int nearVtx;
+
 void mouse(int button, int state, int x, int y)
 {
     /** When left button of our mouse is pressed , we want to add a new point

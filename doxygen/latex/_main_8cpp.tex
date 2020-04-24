@@ -1,0 +1,65 @@
+\hypertarget{_main_8cpp}{}\section{Main.\+cpp File Reference}
+\label{_main_8cpp}\index{Main.\+cpp@{Main.\+cpp}}
+{\ttfamily \#include \char`\"{}G\+L/freeglut.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}variables.\+cpp\char`\"{}}\newline
+Include dependency graph for Main.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_main_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_main_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}{display} ()
+\item 
+void \hyperlink{_main_8cpp_a02fd73d861ef2e4aabb38c0c9ff82947}{init} ()
+\item 
+int \hyperlink{_main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_main_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}\label{_main_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}} 
+\index{Main.\+cpp@{Main.\+cpp}!display@{display}}
+\index{display@{display}!Main.\+cpp@{Main.\+cpp}}
+\subsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Setting the colour aqua
+
+Drawing all the points that are in our vector array of type vertex
+
+Drawing the curve
+
+White text \mbox{\Hypertarget{_main_8cpp_a02fd73d861ef2e4aabb38c0c9ff82947}\label{_main_8cpp_a02fd73d861ef2e4aabb38c0c9ff82947}} 
+\index{Main.\+cpp@{Main.\+cpp}!init@{init}}
+\index{init@{init}!Main.\+cpp@{Main.\+cpp}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Initializes GL states Called by main after window creation \mbox{\Hypertarget{_main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{_main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{Main.\+cpp@{Main.\+cpp}!main@{main}}
+\index{main@{main}!Main.\+cpp@{Main.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+Initialize Open\+G\+L/\+G\+L\+UT
+
+Make a window
+
+Initialize GL states \& register callbacks
+
+The glut display function to render our scene to the window we made
+
+Glut idle function is defines what happens when our screen is idle,i.\+e, we arent interacting with it
+
+to implement our keyboard strokes and allow our keyboard to interact with the window
+
+to maintain the aspect ratio on changing the size of our window
+
+to allow our mouse interacting with the window 

@@ -1,0 +1,56 @@
+\hypertarget{mouse_8cpp}{}\section{mouse.\+cpp File Reference}
+\label{mouse_8cpp}\index{mouse.\+cpp@{mouse.\+cpp}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{mouse_8cpp_ac76a5d78172a826cd6ee9512b89a86c0}{mouse} (int button, int state, int x, int y)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{mouse_8cpp_a210b67113d562ea9ff67c719f2f441a5}{near\+Vtx}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mouse_8cpp_ac76a5d78172a826cd6ee9512b89a86c0}\label{mouse_8cpp_ac76a5d78172a826cd6ee9512b89a86c0}} 
+\index{mouse.\+cpp@{mouse.\+cpp}!mouse@{mouse}}
+\index{mouse@{mouse}!mouse.\+cpp@{mouse.\+cpp}}
+\subsubsection{\texorpdfstring{mouse()}{mouse()}}
+{\footnotesize\ttfamily void mouse (\begin{DoxyParamCaption}\item[{int}]{button,  }\item[{int}]{state,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+mouse The G\+L\+UT mouse function When left button of our mouse is pressed , we want to add a new point and change our bezier curve accordingly
+
+Getting the x-\/y position of the cursor when the left button is clicked
+
+We print out the co-\/ordinates to see that the axes and glut\+Ortho function is working correctly
+
+Adding this to our original array of all the points as any point where the left click is pressed should be drawn and the bezier curve should be changed accordingly
+
+When our right button of the mouse is pressed , we want to delete that point from our set of points to draw the bezier curve and hence the curve should be changed accordingly
+
+Getting the x-\/y position of the cursor when the right button is clicked
+
+We find the nearest point which is used to draw our bezier curve and remove that point. This is done because we cant always have pin point precision in removing a point.
+
+Removing the point from our original vertex containing the points used to draw the bezier curve. After removing , we must update our bezier curve
+
+Now we want to drag a point from the point where we click our middle button of our mouse and then draw it at the point where we release the middle button of our mouse
+
+Getting the x-\/y position of the cursor when the middle button is clicked
+
+We find the nearest point which is used to draw our bezier curve and select that point. This is done because we cant always have pin point precision in selecting a point.
+
+Getting the x-\/y position of the cursor when the middle button is released
+
+Now we change the point where our middle button was released in the original vertex vector and update the bezier curve accordingly
+
+Save the mouse position 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mouse_8cpp_a210b67113d562ea9ff67c719f2f441a5}\label{mouse_8cpp_a210b67113d562ea9ff67c719f2f441a5}} 
+\index{mouse.\+cpp@{mouse.\+cpp}!near\+Vtx@{near\+Vtx}}
+\index{near\+Vtx@{near\+Vtx}!mouse.\+cpp@{mouse.\+cpp}}
+\subsubsection{\texorpdfstring{near\+Vtx}{nearVtx}}
+{\footnotesize\ttfamily int near\+Vtx}
+

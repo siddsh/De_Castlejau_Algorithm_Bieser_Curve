@@ -1,0 +1,96 @@
+\hypertarget{classvertex}{}\section{vertex Class Reference}
+\label{classvertex}\index{vertex@{vertex}}
+
+
+{\ttfamily \#include $<$vertex.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classvertex}{vertex} \hyperlink{classvertex_aefda2986f4a966108034c7c6db0fd280}{merge} (\hyperlink{classvertex}{vertex} v1, \hyperlink{classvertex}{vertex} v2, double t)
+\item 
+vector$<$ \hyperlink{classvertex}{vertex} $>$ \hyperlink{classvertex_a202d5209c7340d7669c15e1933e677a0}{find\+One\+Less} (vector$<$ \hyperlink{classvertex}{vertex} $>$ vert, double t)
+\item 
+\hyperlink{classvertex}{vertex} \hyperlink{classvertex_ab5af4e5840d9caf5599cb51e69c078ef}{find\+Final\+Vert} (double t)
+\item 
+double \hyperlink{classvertex_a805e0de0af85470e4fbf698d71e6c122}{distance} (\hyperlink{classvertex}{vertex} v1, \hyperlink{classvertex}{vertex} v2)
+\item 
+int \hyperlink{classvertex_a2e1c5ac0589fae95a9e62f6685037fe6}{find\+Nearest\+Vertex} (double \hyperlink{classvertex_a11f52ec2e920d56500baefe5a2e2bba7}{x}, double \hyperlink{classvertex_a8b9f211498390a67c369fd43f3722a19}{y})
+\item 
+void \hyperlink{classvertex_ad4edf1c3b1666180030157724c855d58}{printbitmap} (const string msg, double \hyperlink{classvertex_a11f52ec2e920d56500baefe5a2e2bba7}{x}, double \hyperlink{classvertex_a8b9f211498390a67c369fd43f3722a19}{y})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{classvertex}{vertex} $>$ \hyperlink{classvertex_a3d22584dccb715b7f0d25b73825330ad}{v}
+\item 
+double \hyperlink{classvertex_a11f52ec2e920d56500baefe5a2e2bba7}{x}
+\item 
+double \hyperlink{classvertex_a8b9f211498390a67c369fd43f3722a19}{y}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classvertex_a805e0de0af85470e4fbf698d71e6c122}\label{classvertex_a805e0de0af85470e4fbf698d71e6c122}} 
+\index{vertex@{vertex}!distance@{distance}}
+\index{distance@{distance}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily double vertex\+::distance (\begin{DoxyParamCaption}\item[{\hyperlink{classvertex}{vertex}}]{v1,  }\item[{\hyperlink{classvertex}{vertex}}]{v2 }\end{DoxyParamCaption})}
+
+A function to calculate the distance between any 2 given points. We use this function to find the nearest point as we can\textquotesingle{}t accurately point on any given pixel when deleting or scrolling through a function \mbox{\Hypertarget{classvertex_ab5af4e5840d9caf5599cb51e69c078ef}\label{classvertex_ab5af4e5840d9caf5599cb51e69c078ef}} 
+\index{vertex@{vertex}!find\+Final\+Vert@{find\+Final\+Vert}}
+\index{find\+Final\+Vert@{find\+Final\+Vert}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{find\+Final\+Vert()}{findFinalVert()}}
+{\footnotesize\ttfamily \hyperlink{classvertex}{vertex} vertex\+::find\+Final\+Vert (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})}
+
+This function is used to find the points at an interval of 0.\+01 factors to draw our bezier curve from the given input vector of type vertex class We put this if condition to ensure that we have atleast 2 points, which is the minimum requirement for drawing a bezier curve. \mbox{\Hypertarget{classvertex_a2e1c5ac0589fae95a9e62f6685037fe6}\label{classvertex_a2e1c5ac0589fae95a9e62f6685037fe6}} 
+\index{vertex@{vertex}!find\+Nearest\+Vertex@{find\+Nearest\+Vertex}}
+\index{find\+Nearest\+Vertex@{find\+Nearest\+Vertex}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{find\+Nearest\+Vertex()}{findNearestVertex()}}
+{\footnotesize\ttfamily int vertex\+::find\+Nearest\+Vertex (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
+
+This function is used to find the nearest vertex from a given point where we clicked. The distance is calculated between the point where we clicked and the vertex of the bezier curve To calculate distance, we need a minimum of two points. Hence the condition checking here \mbox{\Hypertarget{classvertex_a202d5209c7340d7669c15e1933e677a0}\label{classvertex_a202d5209c7340d7669c15e1933e677a0}} 
+\index{vertex@{vertex}!find\+One\+Less@{find\+One\+Less}}
+\index{find\+One\+Less@{find\+One\+Less}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{find\+One\+Less()}{findOneLess()}}
+{\footnotesize\ttfamily vector$<$ \hyperlink{classvertex}{vertex} $>$ vertex\+::find\+One\+Less (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{classvertex}{vertex} $>$}]{vert,  }\item[{double}]{t }\end{DoxyParamCaption})}
+
+We use this function to find the joining coordinates that will arise for our bezier curves using the vertices that have been given . The function merge is used here to calculate the coordinates and then they are stored in a vertex f which is returned as final output \mbox{\Hypertarget{classvertex_aefda2986f4a966108034c7c6db0fd280}\label{classvertex_aefda2986f4a966108034c7c6db0fd280}} 
+\index{vertex@{vertex}!merge@{merge}}
+\index{merge@{merge}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily \hyperlink{classvertex}{vertex} vertex\+::merge (\begin{DoxyParamCaption}\item[{\hyperlink{classvertex}{vertex}}]{v1,  }\item[{\hyperlink{classvertex}{vertex}}]{v2,  }\item[{double}]{t }\end{DoxyParamCaption})}
+
+a function to find the point of our bezier curve between any 2 points. We use the parametric equation of line and loop t from 0 to 1 to cover all the points that may come between our two points. \mbox{\Hypertarget{classvertex_ad4edf1c3b1666180030157724c855d58}\label{classvertex_ad4edf1c3b1666180030157724c855d58}} 
+\index{vertex@{vertex}!printbitmap@{printbitmap}}
+\index{printbitmap@{printbitmap}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{printbitmap()}{printbitmap()}}
+{\footnotesize\ttfamily void vertex\+::printbitmap (\begin{DoxyParamCaption}\item[{const string}]{msg,  }\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption})}
+
+printbitmap Prints the given string at the given raster position using G\+L\+UT bitmap fonts. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classvertex_a3d22584dccb715b7f0d25b73825330ad}\label{classvertex_a3d22584dccb715b7f0d25b73825330ad}} 
+\index{vertex@{vertex}!v@{v}}
+\index{v@{v}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily vector$<$\hyperlink{classvertex}{vertex}$>$ vertex\+::v}
+
+\mbox{\Hypertarget{classvertex_a11f52ec2e920d56500baefe5a2e2bba7}\label{classvertex_a11f52ec2e920d56500baefe5a2e2bba7}} 
+\index{vertex@{vertex}!x@{x}}
+\index{x@{x}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily double vertex\+::x}
+
+we defined a vector of type vertex here. this will be used to store all the vertices that we use for drawing our bezier curve \mbox{\Hypertarget{classvertex_a8b9f211498390a67c369fd43f3722a19}\label{classvertex_a8b9f211498390a67c369fd43f3722a19}} 
+\index{vertex@{vertex}!y@{y}}
+\index{y@{y}!vertex@{vertex}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily double vertex\+::y}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{vertex_8h}{vertex.\+h}\item 
+\hyperlink{vertex_8cpp}{vertex.\+cpp}\end{DoxyCompactItemize}
