@@ -1,7 +1,7 @@
 var classvertex =
 [
     [ "distance", "classvertex.html#a805e0de0af85470e4fbf698d71e6c122", null ],
-    [ "findFinalVert", "classvertex.html#ab5af4e5840d9caf5599cb51e69c078ef", null ],
+    [ "findFinalPt", "classvertex.html#a458b661ebfaf61213b56808fa0b3547f", null ],
     [ "findNearestVertex", "classvertex.html#a2e1c5ac0589fae95a9e62f6685037fe6", null ],
     [ "findOneLess", "classvertex.html#a202d5209c7340d7669c15e1933e677a0", null ],
     [ "merge", "classvertex.html#aefda2986f4a966108034c7c6db0fd280", null ],

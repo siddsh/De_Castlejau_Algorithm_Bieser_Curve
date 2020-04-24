@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Implementation of 2D Bezier Curve: vertex Class Reference</title>
+<title>Implementation of 2D Bezier curves: vertex Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,10 +28,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Implementation of 2D Bezier Curve
-   &#160;<span id="projectnumber">1.0.1</span>
+   <div id="projectname">Implementation of 2D Bezier curves
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
-   <div id="projectbrief">Assignment 3 for the course IS F311 Computer Graphics offered by Birla Institute of Technology and Science, Pilani</div>
+   <div id="projectbrief">Assignment 3 of the course IS F311 Computer Graphics offered by Birla Institute of Technology and Science, Pilani , Hyderabad Campus during the second semester of the academic year 2019-2020</div>
   </td>
  </tr>
  </tbody>
@@ -98,8 +98,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aefda2986f4a966108034c7c6db0fd280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a202d5209c7340d7669c15e1933e677a0"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classvertex.html">vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvertex.html#a202d5209c7340d7669c15e1933e677a0">findOneLess</a> (vector&lt; <a class="el" href="classvertex.html">vertex</a> &gt; vert, double t)</td></tr>
 <tr class="separator:a202d5209c7340d7669c15e1933e677a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5af4e5840d9caf5599cb51e69c078ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvertex.html">vertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvertex.html#ab5af4e5840d9caf5599cb51e69c078ef">findFinalVert</a> (double t)</td></tr>
-<tr class="separator:ab5af4e5840d9caf5599cb51e69c078ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a458b661ebfaf61213b56808fa0b3547f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classvertex.html">vertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvertex.html#a458b661ebfaf61213b56808fa0b3547f">findFinalPt</a> (double t, vector&lt; <a class="el" href="classvertex.html">vertex</a> &gt; ver)</td></tr>
+<tr class="separator:a458b661ebfaf61213b56808fa0b3547f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a805e0de0af85470e4fbf698d71e6c122"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvertex.html#a805e0de0af85470e4fbf698d71e6c122">distance</a> (<a class="el" href="classvertex.html">vertex</a> v1, <a class="el" href="classvertex.html">vertex</a> v2)</td></tr>
 <tr class="separator:a805e0de0af85470e4fbf698d71e6c122"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e1c5ac0589fae95a9e62f6685037fe6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvertex.html#a2e1c5ac0589fae95a9e62f6685037fe6">findNearestVertex</a> (double <a class="el" href="classvertex.html#a11f52ec2e920d56500baefe5a2e2bba7">x</a>, double <a class="el" href="classvertex.html#a8b9f211498390a67c369fd43f3722a19">y</a>)</td></tr>
@@ -146,23 +146,32 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab5af4e5840d9caf5599cb51e69c078ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5af4e5840d9caf5599cb51e69c078ef">&#9670;&nbsp;</a></span>findFinalVert()</h2>
+<a id="a458b661ebfaf61213b56808fa0b3547f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a458b661ebfaf61213b56808fa0b3547f">&#9670;&nbsp;</a></span>findFinalPt()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classvertex.html">vertex</a> vertex::findFinalVert </td>
+          <td class="memname"><a class="el" href="classvertex.html">vertex</a> vertex::findFinalPt </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="classvertex.html">vertex</a> &gt;&#160;</td>
+          <td class="paramname"><em>ver</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>This function is used to find the points at an interval of 0.01 factors to draw our bezier curve from the given input vector of type vertex class </p>
-<p>We put this if condition to ensure that we have atleast 2 points, which is the minimum requirement for drawing a bezier curve. </p>
 
 </div>
 </div>

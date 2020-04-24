@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "Implementation of 2D Bezier Curve", "index.html", [
+  [ "Implementation of 2D Bezier curves", "index.html", [
     [ "De_Castlejau_Algorithm_Bieser_Curve", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
