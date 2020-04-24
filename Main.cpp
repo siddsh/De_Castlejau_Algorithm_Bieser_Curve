@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
+#include "vertex.cpp"
 using namespace std;
  
 // Global variables
@@ -23,108 +24,11 @@ const int ESCKEY = 27;        // ASCII value of escape character
  
 // Other
 const double pointsize = 40;  // Size of point
-struct vertex                   // a structure to store the x and y coordinates of each point
-{
-    
-};
-vector<vertex> v;               //we defined a vector of type vertex here. this will be used to store all the vertices that we use for drawing our bezier curve
- 
-/* a function to find the point of our bezier curve between any  2 points. We use the parametric equation of line
-and loop t from 0 to 1 to cover all the points that may come between our two points. */
-vertex merge(vertex v1, vertex v2, double t)    
-{
-    vertex out;
-    out.x = t * v1.x + (1 - t) * v2.x;
-    out.y = t * v1.y + (1 - t) * v2.y;
-    return out;
-}
-/*We use this function to find the joining coordinates that will arise for our bezier curves
-using the vertices that have been given . The function merge is used here to calculate the coordinates and
-then they are stored in a vertex f which is returned as final output*/
-vector<vertex> findOneLess(vector<vertex> vert, double t)
-{
-    if (vert.size() != 1)
-    {
-        vector<vertex> f;
-        for (int i = 0; i < vert.size() - 1; i++)
-        {
-            f.push_back(merge(vert[i], vert[i + 1], t));
-        }
-        return f;
-    }
-}
-/**/
-vertex findFinalVert(double t)
-{
-    /*We put this if condition to ensure that we have atleast 2 points, which is the
-    minimum requirement for drawing a bezier curve.*/
-    if (v.size() < 2)
-    {
-        vertex vecto{};
-        vecto.x = NULL;
-        vecto.y = NULL;
-        return vecto;
-    }
- 
-    vector<vertex> vtr;
-    vtr = findOneLess(v, t);
-    while (vtr.size() != 1)
-    {
-        vtr = findOneLess(vtr, t);
-    }
-    return vtr[0];
-}
-/*A function to calculate the distance between any 2 given points. We use this function
-to find the nearest point as we can't accurately point on any given pixel when deleting or
-scrolling through a function*/
-double distance(vertex v1, vertex v2)
-{
-    return ((v1.x - v2.x) * (v1.x - v2.x)) + ((v1.y - v2.y) * (v1.y - v2.y));
-}
-/*This function is used to find the nearest vertex from a given point where we clicked.
-The distance is calculated between the point where we clicked and the vertex of the bezier curve*/
-int findNearestVertex(double x, double y)
-{
-    double minDistance;
-    /*To calculate distance, we need a minimum of two points. Hence the condition checking here*/
-    if (v.size() < 2)
-    {
-        vertex vecto{};
-        vecto.x = NULL;
-        vecto.y = NULL;
-   
-        return NULL;
-    }
-    vertex vtx;
-    vtx.x = x;
-    vtx.y = y;
-    int index = 0;
-    minDistance = distance(vtx, v[0]);
-    for (int i = 1; i < v.size() ; i++)
-    {
-        if (minDistance > distance(vtx, v[i]))
-        {
-             minDistance = distance(vtx, v[i]);
-            index = i;
-        }
-   
-    }
-    return index;
-}
-/* printbitmap
- Prints the given string at the given raster position using GLUT bitmap fonts.
-*/
-void printbitmap(const string msg, double x, double y)
-{
-    glRasterPos2d(x, y);
-    for (string::const_iterator ii = msg.begin();
-        ii != msg.end();
-        ++ii)
-    {
-        glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *ii);
-    }
-   
-}/* This is our rendering function to display our scene*/
+/*Instance of our class here. We called the object here
+and will use its functions accordingly. This is global as
+it has been used across many functions*/
+vertex obj;
+vector<vertex> v ;
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -137,19 +41,22 @@ void display()
         glVertex2f(v[i].x, v[i].y);
     }
     glPointSize(2.0);
-    /* Drawing the updated points , after the clicks */
+    /* Drawing the curve */
     for (double i = 0; i < 1; i += 0.001)
     {
         vertex final;
-        final = findFinalVert(i);
+        final = obj.findFinalVert(i);
         glVertex2d(final.x, final.y);
+        cout<<"*******************";
+        cout<<"\n"<<final.x<<"\n"<<final.y<<"\n"<<i<<"\n";
+        cout<<"*******************";
     }
     glEnd();
     glColor3d(1.0, 1.0, 1.0);  // White text
-    printbitmap("Bezier Curve", 0.05, 0.95);
-    printbitmap("Press Left Mouse Button to add point", 0.05, 0.9);
-    printbitmap("Press Middle(Scroll) Mouse Button to drag the nearest point to a new location", 0.05, 0.85);
-    printbitmap("Press Right Mouse Button to Remove the nearest point", 0.05, 0.80);
+    obj.printbitmap("Bezier Curve", 0.05, 0.95);
+    obj.printbitmap("Press Left Mouse Button to add point", 0.05, 0.9);
+    obj.printbitmap("Press Middle(Scroll) Mouse Button to drag the nearest point to a new location", 0.05, 0.85);
+    obj.printbitmap("Press Right Mouse Button to Remove the nearest point", 0.05, 0.80);
     glutSwapBuffers();
 }
 
@@ -202,7 +109,7 @@ void mouse(int button, int state, int x, int y)
         /*We find the nearest point which is used to draw our bezier curve
         and remove that point. This is done because we cant always have pin point 
         precision in removing a point.*/
-        nearestVertexIndex = findNearestVertex(oglx, ogly);
+        nearestVertexIndex = obj.findNearestVertex(oglx, ogly);
         cout << "NEAREST :" << nearestVertexIndex << endl;
         /*Removing the point from our original vertex containing the points used to
         draw the bezier curve. After removing , we must update our bezier curve*/
@@ -225,7 +132,7 @@ void mouse(int button, int state, int x, int y)
         /*We find the nearest point which is used to draw our bezier curve
         and select that point. This is done because we cant always have pin point 
         precision in selecting a point.*/
-        nearVtx = findNearestVertex(oglx, ogly);
+        nearVtx = obj.findNearestVertex(oglx, ogly);
         cout << "NEAR VERTEX: " << nearVtx << endl;
         cout << "X: " << v[nearVtx].x;
         cout << "\tY: " << v[nearVtx].y << endl;
